@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>School</title>
+    <th:block th:replace="common/meta"></th:block>
+    <th:block th:replace="common/script"></th:block>
+    <th:block th:replace="common/link"></th:block>
+
+
+</head>
+<body>
+<div class="wrapper">
+
+    <th:block th:replace="common/header"></th:block>
+    <th:block th:replace="common/left"></th:block>
+    <th:block th:replace="common/right"></th:block>
+    <th:block th:replace="common/schoolcommon/section"></th:block>
+    <th:block th:replace="common/footer"></th:block>
+</div>
+    <th:block th:include="school/js/index_js"/>
+</body>
+</html>

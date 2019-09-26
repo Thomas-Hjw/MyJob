@@ -1,0 +1,113 @@
+<script type="text/javascript">
+
+    var Login = function () {
+
+        return {
+            init: function () {
+                // alert("--------login_js2 7")
+                Login.initSubmit();
+            },
+
+            initSubmit: function () {
+                // alert("--------login_js2 12")
+                var defaultParam = {
+                    fromID: "newFrom"
+                };
+                var param = $.extend({}, defaultParam);
+                // alert("--------login_js2 17")
+                $('#' + defaultParam.fromID).submit(function () {
+                    // alert("--------login_js2 19")
+
+                    Login.initgetnewfrom(defaultParam);
+                });
+            }
+            ,
+            initgetnewfrom: function (sth) {
+                // alert("--------login_js2 25")
+                var newfrom = $('#' + sth.fromID).serializeObject();
+                // alert("--------login_js2 27")
+                Login.initsetnewfrom(newfrom);
+
+                // $('#' + sth.fromID).submit(function () {
+                //     var b = {};
+                //     var newfrom = $('#' + sth.fromID).serializeArray();
+                //     $.each(newfrom, function () {
+                //         b[this.name] = this.value;
+                //     });
+                //     location.href = "index.html";
+                //     Login.initsetnewfrom(b);
+                // });
+
+
+                // $('#btn_login').click(function () {
+                //     var b = {};
+                //     var newfrom = $('#newFrom').serializeArray();
+                //     alert(newfrom.value+"---------login_js2 51")
+                //
+                //     $.each(newfrom,function () {
+                //         b[this.name] = this.value;
+                //     });
+                //     location.href = "index.html";
+                //
+                //     alert(JSON.stringify(b))
+                //     Login.initsetnewfrom(b);
+                // });
+            },
+
+            initsetnewfrom: function (param) {
+                // alert("------------login_js 66")
+                $.ajax({
+                    url: "login.json",
+                    //提交类型
+                    contentType: "application/json;charset=utf-8",
+                    //提交方法
+                    type: "post",
+                    //提交的数据
+                    data: JSON.stringify(param),
+                    //
+                    // dataType : "JSON",
+                    //回调
+                    success: function (resp) {
+
+                        if (resp.success){
+                            location.href = "index.html";
+                        }else{
+                            swal("--❌-密码错误-❌--");
+                        }
+
+                    }
+                });
+            }
+        }
+    }();
+
+
+    $.fn.serializeObject = function () {
+
+        var o = {};
+
+        var a = this.serializeArray();
+        $.each(a, function () {
+            if (o[this.name]) {
+                if (!o[this.name].push) {
+                    o[this.name] = this.value;
+                }
+                o[this.name].push(this.value || '')
+            } else {
+                o[this.name] = (this.value || '')
+            }
+        });
+        return o;
+
+
+    };
+
+    $(document).ready(function () {
+
+
+        // alert("----------------login_js2 84");
+        Login.init();
+
+    });
+
+</script>

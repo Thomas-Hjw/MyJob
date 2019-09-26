@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.stu.frame.myspringboot.dao.UserMapper">
+    <select id="selByName" parameterType="java.lang.String" resultType="com.stu.frame.myspringboot.model.User">
+        select * from user where name = #{value}
+    </select>
+    <select id="selectSql" parameterType="com.stu.frame.myspringboot.model.User" resultType="com.stu.frame.myspringboot.model.User">
+        select * from user
+        <where>
+            <if test="id != null">
+                id = #{id}
+            </if>
+            <if test="name != null">
+                and name = #{name}
+            </if>
+        </where>
+    </select>
+    <insert id="insertUser" parameterType="com.stu.frame.myspringboot.model.User">
+        insert into user(id, name, password) value(#{id}, #{name}, #{password})
+    </insert>
+</mapper>

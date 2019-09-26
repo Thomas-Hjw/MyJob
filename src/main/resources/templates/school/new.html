@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>编辑</title>
+    <th:block th:replace="common/link"></th:block>
+    <th:block th:replace="common/script"></th:block>
+
+    <!-- 新 Bootstrap 核心 CSS 文件 -->
+    <link href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
+    <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+
+    <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+    <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body>
+<div style="width:100%;text-align:center" class="input-group mb-3">
+        <section>
+            <div class="content-wrapper">
+                <h3>
+                    <!-- Breadcrumb right aligned-->
+                    <div class="pull-right">
+                        <button id="btnBack" type="button"
+                                class="btn btn-default">
+                            返回
+                        </button>
+
+                    </div>
+                    学校
+                    <!-- Small text for title-->
+                    <span class="text-sm hidden-xs">&nbsp;</span>
+                    <!-- Breadcrumb below title-->
+
+                </h3>
+                <!-- START panel-->
+                <div class="panel">
+                    <div class="panel-heading">&nbsp;</div>
+                    <div class="panel-body">
+                        <form method="get" id="saveForm" class="form-horizontal"
+                              data-parsley-validate="" onsubmit="return false">
+                            <input type="hidden" name="id" id="id" th:value="${school.id}" />
+                            <fieldset>
+
+
+
+                                <!-- input text start -->
+                                <div class="form-group mb">
+                                    <label class="control-label col-sm-2">名称&nbsp;:</label>
+
+                                    <div class="col-sm-8">
+                                        <input type="text" class="form-control" required="required" maxlength="16"
+                                               id="name" name="name" th:value="${school.name}" data-parsley-required-message="请输入名称！"/>
+
+                                    </div>
+                                </div>
+                                <!-- input text end -->
+                                <div class="form-group mb">
+                                    <label class="col-sm-2 control-label">排名&nbsp;:</label>
+
+                                    <div class="col-sm-8">
+                                        <input type="text" required="required"   maxlength="4"  name="seq" id="seq" class="form-control" th:value="${school.seq}" data-parsley-required-message="请输入排名！"/>
+
+                                    </div>
+                                </div>
+
+                                <div class="form-group mb">
+                                    <label class="col-sm-2 control-label">分数&nbsp;:</label>
+
+                                    <div class="col-sm-8">
+                                        <input type="text" required="required"   maxlength="6" name="score" id="score" class="form-control" th:value="${school.score}"
+                                               data-parsley-type="number"  data-parsley-number-message="请输入数字！"/>
+
+
+                                    </div>
+                                </div>
+
+                                <div class="form-group mb">
+                                    <label class="col-sm-2 control-label">级别&nbsp;:</label>
+
+                                    <div class="col-sm-8">
+                                        <input type="text"  required="required"   maxlength="16" name="level" id="level" class="form-control" th:value="${school.level}" data-parsley-required-message="请输入级别！"/>
+
+
+                                    </div>
+                                </div>
+
+
+                                <div class="form-group mb">
+                                    <label class="col-sm-2 control-label">备注&nbsp;:</label>
+
+                                    <div class="col-sm-8">
+                                        <input type="text"  name="remark" id="remark"  maxlength="16" class="form-control" th:value="${school.remark}" />
+
+
+                                    </div>
+                                </div>
+
+
+
+
+
+                            </fieldset>
+
+                            <fieldset>
+                                <div class="form-group mb">
+                                    <div class="col-sm-4 col-sm-offset-2">
+                                        <button class="btn btn-primary">保存</button>
+                                    </div>
+                                </div>
+                            </fieldset>
+                        </form>
+                    </div>
+                </div>
+                <!-- END panel-->
+            </div>
+        </section>
+
+</div>
+
+<th:block th:replace="school/js/new_js"/>
+</body>
+</html>

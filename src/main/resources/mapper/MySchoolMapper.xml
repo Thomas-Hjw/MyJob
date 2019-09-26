@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.stu.frame.myspringboot.dao.MySchoolMapper">
+    <select id="selSchool" parameterType="com.stu.frame.myspringboot.common.BaseModelExample" resultType="com.stu.frame.myspringboot.model.MySchool">
+        select * from school limit #{rowIndex},#{pageSize}
+    </select>
+    <select id="getSql" parameterType="com.stu.frame.myspringboot.model.MySchool" resultType="com.stu.frame.myspringboot.model.MySchool">
+        select * from school
+        <where>
+        <if test="id != null">
+            id = #{id}
+        </if>
+        <if test="name != null">
+            and name = #{name}
+        </if>
+        </where>
+    </select>
+    <select id="loadById" parameterType="com.stu.frame.myspringboot.model.MySchool" resultType="com.stu.frame.myspringboot.model.MySchool">
+        select * from school where id = #{id}
+    </select>
+<!--    <select id="selSchool" parameterType="com.stu.frame.myspringboot.model.User" resultType="com.stu.frame.myspringboot.model.User">-->
+<!--        select * from school;-->
+<!--    </select>-->
+
+    <insert id="insertSql" parameterType="com.stu.frame.myspringboot.model.MySchool">
+        insert into school
+        value (id = #{id}, seq = #{seq}, score = #{score}, name = #{name}, level = #{level}, remark = #{remark})
+    </insert>
+    <update id="updataSql" parameterType="com.stu.frame.myspringboot.model.MySchool">
+        update school s set s.remark = #{remark}, s.name = #{name}
+        WHERE s.id = #{id}
+    </update>
+    <update id="updateSchool" parameterType="com.stu.frame.myspringboot.model.MySchool">
+        update school s set s.name = #{name}, s.remark = #{remark}, s.score = #{score}, s.level = #{level} where s.id = #{id}
+    </update>
+
+    <delete id="deleteId" parameterType="int">
+        delete from school where id = #{id}
+    </delete>
+</mapper>
